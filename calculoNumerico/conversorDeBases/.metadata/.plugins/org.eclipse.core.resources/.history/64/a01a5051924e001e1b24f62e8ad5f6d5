@@ -1,0 +1,57 @@
+package conversor;
+
+public class Binario {
+	private String binario;
+	public Binario(String binario) {
+		setBinario(binario);
+	}
+	public String getBinario() {
+		return binario;
+	}
+	public void setBinario(String binario) {
+		if(binario != null && !binario.isEmpty())
+			this.binario = binario;
+		else
+			System.out.println("Entrada inválida");
+	}
+	public String conversorBinario(String base, String tipo) {
+		if(tipo.equals("decimal")) {
+			int decimal;
+			do {
+			decimal = Integer.parseInt(base);
+			binario += decimal%2;
+			decimal = decimal/2;
+			}while(decimal > 0);
+		}
+		else if(tipo.equals("octal")) {
+			for (int i = 0; i < base.length(); i++) {
+			    int numeroAtual = base.charAt(i);
+			    switch (numeroAtual)
+			    case 0:
+			    	binario += "000";
+			    	break;
+			    case 1:
+			    	binario += "001";
+			    	break;
+			    case 2:
+			    	binario += "010";
+			    	break;
+			    case 3:
+			    	binario += "011";
+			    	break;
+			    case 4:
+			    	binario += "100";
+			    	break;
+			    case 5:
+			    	binario += "101";
+			    	break;
+			    case 6:
+			    	binario += "110";
+			    	break;
+			    case 7:
+			    	binario += "111";
+			}
+		}
+		return binario;
+	}
+}

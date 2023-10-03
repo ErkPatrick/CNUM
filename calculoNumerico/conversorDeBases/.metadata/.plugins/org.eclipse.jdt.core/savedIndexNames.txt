@@ -1,0 +1,4 @@
+INDEX VERSION 1.134+C:\Projetos java\calculoNumerico\conversorDeBases\.metadata\.plugins\org.eclipse.jdt.core
+4201656663.index
+165176358.index
+1865797976.index
