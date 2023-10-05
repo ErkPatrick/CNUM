@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class MetodoDosTrapezios {
 	static double metTrapezios, somTrapeziosIntermediarios, iniIntervalo, fimIntervalo, h, x;
 	static double valorDaIntegral = 1.0986;
-	static int qtdParticoes = 4;
+	static int qtdParticoes = 1000;
 	static double [][] tabela = new double [qtdParticoes+1][2]; //muito confuso
 	static Scanner scan = new Scanner(System.in);
 	
@@ -42,6 +42,7 @@ public class MetodoDosTrapezios {
 			somTrapeziosIntermediarios += (tabela[i][1]);
 		}
 		metTrapezios = h/2*(tabela[0][1]+(2*somTrapeziosIntermediarios)+tabela[qtdParticoes][1]);
+		System.out.println("O somatório das áreas dos trapézios é igual a: " + metTrapezios);
 			
 		calculoErro();
 	}
