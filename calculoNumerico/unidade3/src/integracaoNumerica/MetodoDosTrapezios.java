@@ -2,11 +2,11 @@ package integracaoNumerica;
 
 import java.util.Scanner;
 
-public class SomaDeRiemann {
-	static double somaDeRiemann, iniIntervalo, fimIntervalo, h, x;
-	static double valorDaIntegral = 2.3333;
+public class MetodoDosTrapezios {
+	static double metTrapezios, somTrapeziosIntermediarios, iniIntervalo, fimIntervalo, h, x;
+	static double valorDaIntegral = 1.0986;
 	static int qtdParticoes = 4;
-	static double [][] tabela = new double [qtdParticoes+1][2]; //conferir
+	static double [][] tabela = new double [qtdParticoes+1][2]; //muito confuso
 	static Scanner scan = new Scanner(System.in);
 	
 	
@@ -14,9 +14,8 @@ public class SomaDeRiemann {
 		intervalo();
 		tabelamento();
 		toStringTabela();
-		esquerda();
 		System.out.println("====================================");
-		direita();
+		somTrapezios();
 		
 	}
 	//=============lendo o intervalo ====================
@@ -32,30 +31,24 @@ public class SomaDeRiemann {
 		x = iniIntervalo;
 		for(int i = 0; i<=qtdParticoes; i++) {
 			tabela[i][0] = x;
-			tabela[i][1] = Math.pow(x, 2); // colocamos a função aqui
+			tabela[i][1] = 1/x; // colocamos a função aqui
 			x+=h;
 		}
 	}
-	//===============abordagem do c à esquerda ====================
-	public static void esquerda() {
-		somaDeRiemann = 0;
-		for(int i = 0; i <= (qtdParticoes-1); i++) {
-			somaDeRiemann += h*(tabela[i][1]);
+	//===============cálculo do somatório dos trapézios ====================
+	public static void somTrapezios() {
+
+		for(int i = 1; i<=(qtdParticoes-1); i++) {
+			somTrapeziosIntermediarios += (tabela[i][1]);
 		}
-		System.out.println("A soma de Riemann à esquerda com " + qtdParticoes + " partições em um intervalo de " + iniIntervalo + " até " + fimIntervalo +  " é de: " + somaDeRiemann);
+		metTrapezios = h/2*(tabela[0][1]+(2*somTrapeziosIntermediarios)+tabela[qtdParticoes][1]);
+			
 		calculoErro();
 	}
-	public static void direita() {
-		somaDeRiemann = 0;
-		for(int i = 1; i <= qtdParticoes; i++) {
-			somaDeRiemann += h*(tabela[i][1]);
-		}
-		System.out.println("A soma de Riemann à direita com " + qtdParticoes + " partições em um intervalo de " + iniIntervalo + " até " + fimIntervalo +  " é de: " + somaDeRiemann);
-		calculoErro();
-	}
+	//===============calcular erro===================
 	public static void calculoErro() {
 		double erroAbs, erroRel;
-		erroAbs = Math.abs(somaDeRiemann-valorDaIntegral);
+		erroAbs = Math.abs(metTrapezios-valorDaIntegral);
 		System.out.println("Erro absoluto: " + erroAbs);
 		erroRel = (erroAbs/valorDaIntegral)*100;
 		System.out.println("Erro relativo = " + erroRel +"%");
@@ -63,12 +56,13 @@ public class SomaDeRiemann {
 	public static void toStringTabela() {
 		System.out.println("\tX\t|\tY\t");
 		System.out.println("-------------------------------------");
-		for(int linha = 0; linha <= qtdParticoes; linha++) {
+		for(int linha = 0; linha < qtdParticoes+1; linha++) {
 			for(int coluna = 0; coluna < 2; coluna++) {
 				System.out.printf(tabela[linha][coluna] + "\t"); 
 			}
 			System.out.println();
 		}
-		System.out.println("======================================================================================");
+		//System.out.println("======================================================================================");
 	}
 }
+
