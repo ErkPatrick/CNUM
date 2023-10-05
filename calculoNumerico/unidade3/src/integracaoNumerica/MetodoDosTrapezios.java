@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class MetodoDosTrapezios {
 	static double metTrapezios, somTrapeziosIntermediarios, iniIntervalo, fimIntervalo, h, x;
 	static double valorDaIntegral = 1.0986;
-	static int qtdParticoes = 1000;
+	static int qtdParticoes = 1000000000;
 	static double [][] tabela = new double [qtdParticoes+1][2]; //muito confuso
 	static Scanner scan = new Scanner(System.in);
 	
@@ -13,7 +13,7 @@ public class MetodoDosTrapezios {
 	public static void main(String args[]) {
 		intervalo();
 		tabelamento();
-		toStringTabela();
+		//toStringTabela();
 		System.out.println("====================================");
 		somTrapezios();
 		
