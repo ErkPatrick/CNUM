@@ -5,15 +5,15 @@ import java.util.Scanner;
 public class SomaDeRiemann {
 	static double somaDeRiemann, iniIntervalo, fimIntervalo, h, x;
 	static double valorDaIntegral = 2.3333;
-	static int qtdParticoes = 1000;
-	static double [][] tabela = new double [qtdParticoes][2];
+	static int qtdParticoes = 4;
+	static double [][] tabela = new double [qtdParticoes+1][2]; //conferir
 	static Scanner scan = new Scanner(System.in);
 	
 	
 	public static void main(String args[]) {
 		intervalo();
 		tabelamento();
-		//toStringTabela();
+		toStringTabela();
 		esquerda();
 		System.out.println("====================================");
 		direita();
@@ -30,7 +30,7 @@ public class SomaDeRiemann {
 	public static void tabelamento() {
 		h = (fimIntervalo - iniIntervalo)/qtdParticoes; // cálculo do h
 		x = iniIntervalo;
-		for(int i = 0; i<=(qtdParticoes-1); i++) {
+		for(int i = 0; i<=qtdParticoes; i++) {
 			tabela[i][0] = x;
 			tabela[i][1] = Math.pow(x, 2); // colocamos a função aqui
 			x+=h;
@@ -39,7 +39,7 @@ public class SomaDeRiemann {
 	//===============abordagem do c à esquerda ====================
 	public static void esquerda() {
 		somaDeRiemann = 0;
-		for(int i = 0; i <= (qtdParticoes-2); i++) {
+		for(int i = 0; i <= (qtdParticoes-1); i++) {
 			somaDeRiemann += h*(tabela[i][1]);
 		}
 		System.out.println("A soma de Riemann à esquerda com " + qtdParticoes + " partições em um intervalo de " + iniIntervalo + " até " + fimIntervalo +  " é de: " + somaDeRiemann);
@@ -47,7 +47,7 @@ public class SomaDeRiemann {
 	}
 	public static void direita() {
 		somaDeRiemann = 0;
-		for(int i = 1; i <= (qtdParticoes-1); i++) {
+		for(int i = 1; i <= qtdParticoes; i++) {
 			somaDeRiemann += h*(tabela[i][1]);
 		}
 		System.out.println("A soma de Riemann à direita com " + qtdParticoes + " partições em um intervalo de " + iniIntervalo + " até " + fimIntervalo +  " é de: " + somaDeRiemann);
@@ -63,7 +63,7 @@ public class SomaDeRiemann {
 	public static void toStringTabela() {
 		System.out.println("\tX\t|\tY\t");
 		System.out.println("-------------------------------------");
-		for(int linha = 0; linha < 1000; linha++) {
+		for(int linha = 0; linha <= qtdParticoes; linha++) {
 			for(int coluna = 0; coluna < 2; coluna++) {
 				System.out.printf(tabela[linha][coluna] + "\t"); 
 			}
