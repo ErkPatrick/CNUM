@@ -4,9 +4,9 @@ import java.util.Scanner;
 
 public class SomaDeRiemann {
 	static double somaDeRiemann, iniIntervalo, fimIntervalo, h, x;
-	static double valorDaIntegral = 2.3333;
-	static int qtdParticoes = 4;
-	static double [][] tabela = new double [qtdParticoes+1][2]; //conferir
+	static double valorDaIntegral = 2.3333; //intervalo de 1 a 2
+	static int qtdParticoes = 1000;
+	static double [][] tabela = new double [qtdParticoes+1][2];
 	static Scanner scan = new Scanner(System.in);
 	
 	
