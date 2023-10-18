@@ -13,7 +13,7 @@ public class SomaDeRiemann {
 	public static void main(String args[]) {
 		intervalo();
 		tabelamento();
-		toStringTabela();
+		//toStringTabela();
 		esquerda();
 		System.out.println("====================================");
 		direita();

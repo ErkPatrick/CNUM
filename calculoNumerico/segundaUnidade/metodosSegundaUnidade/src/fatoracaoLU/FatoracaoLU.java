@@ -12,9 +12,13 @@ public class FatoracaoLU {
 	static double ml21, ml31, ml32;
 	static Scanner scan = new Scanner (System.in);
 	static boolean fatLUUnica;
+	/*Exemplo:  3 + 2 + 4 = 1    x1 = -3 
+	 * 			1 + 1 + 2 = 2	 x2 = 5
+	 * 			4 + 3 - 2 = 3 	 x3 = 0 */
 	
 	
 	public static void main(String[] args) {
+		System.out.println("Método da Fatoração LU\n");
 		matrizA = valoresMatrizA();
 		System.out.println("Matriz A: \n");
 		toStringMatriz(matrizA);
