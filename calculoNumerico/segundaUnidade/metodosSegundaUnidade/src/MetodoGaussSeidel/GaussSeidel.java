@@ -1,8 +1,8 @@
-package MetodoGaussJacobi;
+package MetodoGaussSeidel;
 
 import java.util.Scanner;
 
-public class GaussJacobi {
+public class GaussSeidel {
 	static double[][] matrizA = new double[3][3];
 	static double[] vetorB = new double[3];
 	static double[] vetorX = new double[3];
@@ -16,7 +16,7 @@ public class GaussJacobi {
 	 * 			1 + 5 + 1 = -8
 	 * 			2 + 3 + 10 = 6*/
 	public static void main(String[] args) {
-		System.out.println("Método de Gauss Jacobi\n");
+		System.out.println("Método de Gauss Seidel");
 		formarMatrizA();
 		diagonalmenteDominante();
 		montarVetorB();
@@ -93,16 +93,18 @@ public class GaussJacobi {
 		
 		for(int i = 0; i < 3; i++)
 			vetorXAnterior[i] = vetorX[i];
-		
-		for(int i = 0; i < 3; i++) {
+	
+		vetorX[0] = (vetorB[0] - matrizA[0][1]*vetorXAnterior[1] - matrizA[0][2]*vetorXAnterior[2])/matrizA[0][0];
+		vetorX[1] = (vetorB[1] - matrizA[1][0]*vetorX[0] - matrizA[1][2]*vetorXAnterior[2])/matrizA[1][1];
+		vetorX[2] = (vetorB[2] - matrizA[2][0]*vetorX[0] - matrizA[2][1]*vetorX[1])/matrizA[2][2];
+		/*for(int i = 0; i < 3; i++) {
 			vetorX[i] = vetorB[i];
 			for(int j = 0; j < 3; j++) {
 				if(i!=j)
 					vetorX[i] += -matrizA[i][j]*vetorXAnterior[j];
 			}
-			vetorX[i] = vetorX[i]/matrizA[i][i];
+			vetorX[i] = vetorX[i]/matrizA[i][i];*/
 		}
-	}
 	//===================verifica o critério de parada===================
 	private static boolean criterioParada() {
 		return criterioParadaDistanciaAbs() || criterioParadaDistanciaRel() ||criterioParadaLimiteIteracoes();
@@ -153,7 +155,8 @@ public class GaussJacobi {
 		System.out.println("Vetor X:");
 		 for(int i = 0; i<3; i++) {
 			 System.out.println("X" + (i+1) +": " + vetorX[i]);
-		 }
+		 	}
+		}
+
 	}
-	
-}
+
