@@ -27,12 +27,9 @@ public class Binario {
 		if(tipo.equals("decimal")) {
 			int decimal = Integer.parseInt(base);;
 			do {
-			System.out.println("decimal =" + decimal);
 			binario += decimal%2;
-			System.out.println("Binario= " + binario);
 			decimal = decimal/2;
 			}while(decimal > 0);
-			System.out.println("Passei por aqui");
 			binario = inverterString(binario);
 		}
 		else if (tipo.equals("octal")) {
@@ -129,7 +126,6 @@ public class Binario {
 		        }
 			}
 		}
-		System.out.println("Cheguei no return");
-		return binario;
+		return "Valor " + base + " na base " + tipo + " em binário é: " +  binario;
 	}
 }
