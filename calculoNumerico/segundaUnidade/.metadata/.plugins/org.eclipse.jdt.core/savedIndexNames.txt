@@ -1,4 +1,0 @@
-INDEX VERSION 1.134+C:\Projetos java\calculoNumerico\EliminacaoDeGauss\.metadata\.plugins\org.eclipse.jdt.core
-3088050413.index
-1865797976.index
-4201656663.index
