@@ -3,10 +3,12 @@ package metodosNumericos;
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
-public class FalsaPosicao {
+public class NewtonRaphson {
 	static double a, b;
 	static double x, y;
+	static double xAnterior;
 	static double precisao = 0.01;
+	static int iteracao = 0;
 	static boolean positivoA, positivoB, positivoY;
 	static double inicioIntervalo = 0;
 	static double fimIntervalo = 3;
@@ -26,6 +28,7 @@ public class FalsaPosicao {
 			inicioIntervalo+=h;
 			System.out.println("   " + tabela[i][0] + "   |" + "   " + tabela[i][1]  + "   ");
 		}
+		
 		for(int i = 0; i < linhas-1; i++) {
 			a = tabela[i][0];
 			b = tabela[i + 1][0];
@@ -33,34 +36,37 @@ public class FalsaPosicao {
 			positivoA = f(a) > 0;
 			positivoB = f(b) > 0;
 			
-			if(positivoA != positivoB) {
+			if (positivoA != positivoB) {
 				System.out.println("\n\nHá raiz entre o intervalos [ " + a + " ; " + b + " ]\n\n");
-				System.out.println("Refinando pelo método da Falsa Posição...\n\n");
-				System.out.println("_________________________________________________________________________________");
-				System.out.println("|      a     |     f(a)    |      b     |    f(b)    |      x     |     f(x)    |");
-				System.out.println("---------------------------------------------------------------------------------");
+				System.out.println("Refinando pelo método de Newton-Raphson...\n\n");
+				System.out.println("____________________________________");
+				System.out.println("| ITER. |      X     |      f(x)   |");
+				System.out.println("------------------------------------");
+				iteracao = 0; // devemos reiniciar a iteração a cada novo refinamento de raiz
 				do {
-					x = (a * f(b) - b * f(a)) / (f(b) - f(a)); // método da Falsa Posição
-					y = f(x);
-					positivoY = y > 0;
-					System.out.println("|   " + deci.format(a) + "   |" + "   " + deci.format(f(a)) + "   |" + "   "
-							+ deci.format(b) + "   |" + "   " + deci.format(f(b)) + "   |" + "   " + deci.format(x) + "   |"
-							+ "   " + deci.format(f(x)) + "   |");
-					if (positivoA == positivoY)
-						a = x;
+					xAnterior = x;
+					if(iteracao == 0)
+						x = (a + b)/2; // x0
 					else
-						b = x;
+						x = xAnterior - (f(x)/derivada(x)); // método do ponto fixo
+					y = f(x);
+					System.out.println("|   " + iteracao + "   |" + "   " + deci.format(x) + "   |" + "   " + deci.format(y) + "   |");
+					iteracao++;
 				} while (Math.abs(y) > precisao);
-				System.out.println("=================================================================================");
+				System.out.println("====================================");
 				System.out.println("Para uma precisão de " + precisao + " temos:");
 				System.out.println("Raiz = " + deci.format(x) + "\nf(x) = " + deci.format(y));
-				System.out.println("\n\n------------------------------------------------------------------------------\n\n");
+				System.out.println("\n\n----------------------------------\n\n");
 			}
 		}
 	}
 
 	public static double f(double x) {
 		double resultado = Math.pow(x, 3) - 9*x +5;
+		return resultado;
+	}
+	public static double derivada ( double x) {
+		double resultado = 3*Math.pow(x, 2) - 9;
 		return resultado;
 	}
 }
